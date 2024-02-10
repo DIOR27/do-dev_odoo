@@ -25,13 +25,16 @@
         # 'security/ir.model.access.csv',
         'views/views.xml',
         'views/templates.xml',
-        'demo/demo.xml'
+        'demo/demo.xml',
+        'security/res_groups.xml'
     ],
     # only loaded in demonstration mode
     'demo': [
         'demo/demo.xml',
     ],
-    
+
+    'license': 'OEEL-1',
+
     'installable': True,
     'application': True,
 }
