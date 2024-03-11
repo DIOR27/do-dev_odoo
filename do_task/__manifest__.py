@@ -1,41 +1,38 @@
 # -*- coding: utf-8 -*-
 {
-    'name': "DO Task",
+    'name': "UCuenca Test Module",
 
-    'summary': "The DO Dev Task Odoo Module",
+    'summary': "Short (1 phrase/line) summary of the module's purpose",
 
     'description': """
-    DO Task is a module for the Odoo framework that allows you to create and manage tasks.
+Long description of module's purpose
     """,
 
     'author': "My Company",
     'website': "https://www.yourcompany.com",
+    'countries': ['ec'],
 
     # Categories can be used to filter modules in modules listing
     # Check https://github.com/odoo/odoo/blob/15.0/odoo/addons/base/data/ir_module_category_data.xml
     # for the full list
-    'category': 'Uncategorized',
+    'category': 'Productivity',
     'version': '0.1',
 
     # any module necessary for this one to work correctly
-    'depends': ['base'],
+    'depends': ['base', 'hr', 'mail'],
 
     # always loaded
-    'data': [
-        # 'security/ir.model.access.csv',
-        'views/views.xml',
-        'views/templates.xml',
-        'demo/demo.xml',
-        'security/res_groups.xml'
+    "data": [
+        "security/ir.model.access.csv",
+        "security/res_groups.xml",
+        "views/views.xml",
+        "views/templates.xml",
+        "data/crm_stage.xml",
+        "data/test_sequence.xml",
+        # "views/res_config_settings.xml"
     ],
-    # only loaded in demonstration mode
-    'demo': [
-        'demo/demo.xml',
-    ],
-
-    'license': 'OEEL-1',
-
-    'installable': True,
-    'application': True,
+    
+    "application": True,
+    "installable": True,
 }
 

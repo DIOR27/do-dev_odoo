@@ -1,60 +1,111 @@
 <odoo>
   <data>
     <!-- explicit list view definition -->
-<!--
-    <record model="ir.ui.view" id="do_task.list">
-      <field name="name">do_task list</field>
-      <field name="model">do_task.do_task</field>
+
+    <!-- region ucuenca_test -->
+
+    <record model="ir.ui.view" id="test.list">
+      <field name="name">test list</field>
+      <field name="model">ucuenca.test</field>
       <field name="arch" type="xml">
         <tree>
-          <field name="name"/>
-          <field name="value"/>
-          <field name="value2"/>
+          <field name="name" />
+          <field name="description" />
+          <field name="value" />
         </tree>
       </field>
     </record>
--->
 
     <!-- actions opening views on models -->
-<!--
-    <record model="ir.actions.act_window" id="do_task.action_window">
-      <field name="name">do_task window</field>
-      <field name="res_model">do_task.do_task</field>
-      <field name="view_mode">tree,form</field>
-    </record>
--->
 
-    <!-- server action to the one above -->
-<!--
-    <record model="ir.actions.server" id="do_task.action_server">
-      <field name="name">do_task server</field>
-      <field name="model_id" ref="model_do_task_do_task"/>
-      <field name="state">code</field>
-      <field name="code">
-        action = {
-          "type": "ir.actions.act_window",
-          "view_mode": "tree,form",
-          "res_model": model._name,
-        }
+    <record model="ir.actions.act_window" id="test.action_window">
+      <field name="res_model">ucuenca.test</field>
+      <field name="view_id" ref="test.list" />
+      <!-- <field name="view_mode">tree,form</field> -->
+      <field name="view_mode">kanban,tree,form,graph</field>
+    </record>
+
+    <record id="test.view_ucuenca_test_form" model="ir.ui.view">
+      <field name="name">view.view_ucuenca.form</field>
+      <field name="model">ucuenca.test</field>
+      <field name="arch" type="xml">
+        <form class="o_lead_opportunity_form" js_class="crm_form">
+          <header>
+            <button class="oe_stat_button" icon="fa-file-excel-o" name="test_sample" colspan="2"
+              string="Exportar a Excel" type="object" />
+            <field name="stage_id" widget="statusbar" />
+            <button name="previous_stage" string="Etapa anterior" class="oe_highlight"
+              icon="fa-arrow-circle-left" type="object"
+              confirm="¿Está seguro de que desea regresar a la etapa anterior de este registro?" />
+            <button name="next_stage" string="Siguiente etapa" class="oe_highlight" type="object"
+              icon="fa-arrow-circle-right"
+              confirm="¿Está seguro de que desea avanzar a la siguiente etapa de este registro?" />
+          </header>
+          <sheet>
+            <div class="oe_title">
+              <label for="name" />
+              <h1>
+                <field name="name" placeholder="Title" readonly="1" />
+              </h1>
+            </div>
+            <group>
+              <group>
+                <field name="description" />
+                <field name="value" />
+              </group>
+            </group>
+            <notebook>
+              <page string="Page 1">
+                <field name="test_line_ids" no="1">
+                  <tree editable="bottom">
+                    <field name="test_name" />
+                    <field name="test_value" />
+                  </tree>
+                </field>
+              </page>
+              <page string="Page 2">
+                <field name="value" />
+              </page>
+            </notebook>
+          </sheet>
+          <div class="oe_chatter">
+            <field name="message_follower_ids" widget="mail_followers" options="{'no_open': True}" />
+            <field name="activity_ids" widget="mail_activity" />
+            <field name="message_ids" widget="mail_thread" />
+          </div>
+        </form>
       </field>
     </record>
--->
+
+    <record id="test.action_ucuenca_test_form" model="ir.actions.act_window">
+      <field name="name">Test form</field>
+      <field name="type">ir.actions.act_window</field>
+      <field name="res_model">ucuenca.test</field>
+      <field name="view_id" ref="test.view_ucuenca_test_form" />
+      <field name="view_mode">form</field>
+    </record>
+
+    <!-- endregion -->
+
+    <!-- region menu -->
 
     <!-- Top menu item -->
-<!--
-    <menuitem name="do_task" id="do_task.menu_root"/>
--->
+
+    <menuitem name="Test" id="test.menu_root" action="test.action_window"
+      web_icon="test,static/description/icon.png" />
+
     <!-- menu categories -->
-<!--
-    <menuitem name="Menu 1" id="do_task.menu_1" parent="do_task.menu_root"/>
-    <menuitem name="Menu 2" id="do_task.menu_2" parent="do_task.menu_root"/>
--->
+
+    <menuitem name="Menu 1" id="test.menu_1" parent="test.menu_root" />
+    <menuitem name="Menu 2" id="test.menu_2" parent="test.menu_1" />
+
     <!-- actions -->
-<!--
-    <menuitem name="List" id="do_task.menu_1_list" parent="do_task.menu_1"
-              action="do_task.action_window"/>
-    <menuitem name="Server to list" id="do_task" parent="do_task.menu_2"
-              action="do_task.action_server"/>
--->
+
+    <menuitem name="List" id="test.menu_1_list" parent="test.menu_1" action="test.action_window" />
+    <menuitem name="Server to list" id="test" parent="test.menu_2"
+      action="test.action_ucuenca_test_form" />
+
+    <!-- endregion -->
+
   </data>
 </odoo>
