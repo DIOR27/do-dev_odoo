@@ -29,7 +29,6 @@ Long description of module's purpose
         "views/templates.xml",
         "data/crm_stage.xml",
         "data/test_sequence.xml",
-        # "views/res_config_settings.xml"
     ],
     
     "application": True,

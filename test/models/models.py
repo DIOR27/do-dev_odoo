@@ -133,7 +133,6 @@ class test(models.Model):
             % (self.env.user.name, current_stage, self.stage_id.name)
         )
 
-
 class TestLine(models.Model):
     _name = "ucuenca.test.line"
     _description = "Línea de prueba para la Universidad de Cuenca"
